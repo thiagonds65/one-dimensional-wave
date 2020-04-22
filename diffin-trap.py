@@ -67,7 +67,10 @@ def main():
     for j in range(1, n):
         plt.figure("one-dimensional Wave")
 
+        plt.axes(xlim=(0, 20), ylim=(-1, 1))
+
         plt.plot(x[:], u[:, j-1])
+        plt.grid(True)
         plt.draw()
         plt.pause(0.0001)
         plt.clf()
