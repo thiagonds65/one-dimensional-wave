@@ -64,9 +64,18 @@ def main():
 
 
     # To obtain animated plot:
-    for j in range(1, n):
-        plt.figure("One-dimensional Wave")
+    """
+    styles available:
+    ['bmh', 'seaborn-pastel', 'seaborn-muted', 'seaborn-colorblind', 'fast', 'seaborn-deep', 
+    'seaborn-dark-palette', 'ggplot', 'seaborn', 'seaborn-white', 'fivethirtyeight', 
+    'seaborn-notebook', 'seaborn-dark', 'classic', 'grayscale', 'seaborn-darkgrid', 
+    'seaborn-bright', '_classic_test', 'seaborn-whitegrid', 'seaborn-poster', 'seaborn-paper', 
+    'seaborn-talk', 'Solarize_Light2', 'seaborn-ticks', 'tableau-colorblind10', 'dark_background']
+    """
 
+    plt.figure("One-dimensional Wave")
+    plt.style.use(plt.style.available[0])
+    for j in range(1, n):
         plt.axes(xlim=(0, 20), ylim=(-1, 1))
 
         plt.plot(x[:], u[:, j-1])
