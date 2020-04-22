@@ -65,7 +65,7 @@ def main():
 
     # To obtain animated plot:
     for j in range(1, n):
-        plt.figure("one-dimensional Wave")
+        plt.figure("One-dimensional Wave")
 
         plt.axes(xlim=(0, 20), ylim=(-1, 1))
 
