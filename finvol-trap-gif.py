@@ -22,7 +22,7 @@ v = 1.0  # Speed
 L = 20  # String length (m)
 p = 40  # Final time (s)
 
-fps = 10 # frame per sec
+fps = 30 # frame per sec
 
 m = int(L/dx+1)  # Number of spatial nodes
 n = int(p/dt+1)  # Number of temporal nodes
@@ -84,8 +84,8 @@ def update_plot(i):
 
 
 ani = animation.FuncAnimation(fig, update_plot, init_func=init, frames=frn, interval=20, blit=True)
-#ani.save('wave_propagation_1d-teste.gif', writer='imagemagick', fps=fps*3)
-#Retirar comentário acima para salvar gif da animação
+#ani.save('wave_propagation_1d.gif', writer='imagemagick', fps=fps)
+#remove '#' above to build GIF
 plt.show()
 
 
