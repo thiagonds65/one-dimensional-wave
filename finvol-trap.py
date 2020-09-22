@@ -1,48 +1,53 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def condinx(xx):
     u0 = np.sin(xx)
 
     return u0
+
 
 def condinv(xx):
     v = 0
 
     return v
 
+
 def main():
 
     # Declaring variables
-    dx = 0.1 # Variation of x (m)
-    dt = 0.1 # Variation of t (s)
+    dx = 0.1  # Variation of x (m)
+    dt = 0.1  # Variation of t (s)
 
-    v = 1 # Speed
-    L = 20 # String length (m)
-    p = 30 # Final time (s)
+    v = 1  # Speed
+    L = 20  # String length (m)
+    p = 30  # Final time (s)
 
-    m = int(L/dx+1) # Number of spatial nodes
-    n = int(p/dt+1) # Number of temporal nodes
+    m = int(L/dx+1)  # Number of spatial nodes
+    n = int(p/dt+1)  # Number of temporal nodes
 
-    c = (v**2)*(dt**2)/(dx**2) # if c>1, instability of simulation occurs 
+    c = (v**2)*(dt**2)/(dx**2)  # if c>1, instability of simulation occurs
 
-    u = np.zeros((m, n)) # Allocating memory space in variable (Wave amplitude)
+    # Allocating memory space in variable (Wave amplitude)
+    u = np.zeros((m, n))
 
-    x = np.arange(0, L+dx, dx) # 
+    x = np.arange(0, L+dx, dx)
     t = np.arange(0, p+dt, dt)
 
     # Initial condition:
     # How the string was when it started to be observed
 
     for i in range(m):
-        if(x[i]<=np.pi):
+        if(x[i] <= np.pi):
             u[i, 0] = condinx(x[i])
         else:
             u[i, 0] = 0
 
     # Velocity initial condition (du/dt = v)
     for i in range(1, m - 1):
-        u[i, 1] = u[i, 0] + n * condinv(x[i]) + (c / 2)*(u[i + 1, 0] - 2 * u[i, 0] + u[i - 1, 0])
+        u[i, 1] = u[i, 0] + dt * \
+            condinv(x[i]) + (c / 2)*(u[i + 1, 0] - 2 * u[i, 0] + u[i - 1, 0])
 
     ''' 
     Through Finite Volume Method (FVM), it's possible to obtain the following equation
@@ -60,19 +65,11 @@ def main():
                 bb = u[i + 1, j] + u[i - 1, j]
                 aaa = u[i + 1, j - 1] + u[i - 1, j - 1]
 
-                u[i, j + 1] = (a*aa + b * bb - e * u[i, j] + a * aaa - s * u[i, j - 1]) / s
-
+                u[i, j + 1] = (a*aa + b * bb - e * u[i, j] +
+                               a * aaa - s * u[i, j - 1]) / s
 
     # To obtain animated plot:
-    """
-    styles available:
-    ['bmh', 'seaborn-pastel', 'seaborn-muted', 'seaborn-colorblind', 'fast', 'seaborn-deep', 
-    'seaborn-dark-palette', 'ggplot', 'seaborn', 'seaborn-white', 'fivethirtyeight', 
-    'seaborn-notebook', 'seaborn-dark', 'classic', 'grayscale', 'seaborn-darkgrid', 
-    'seaborn-bright', '_classic_test', 'seaborn-whitegrid', 'seaborn-poster', 'seaborn-paper', 
-    'seaborn-talk', 'Solarize_Light2', 'seaborn-ticks', 'tableau-colorblind10', 'dark_background']
-    """
-
+    
     plt.figure("One-dimensional Wave")
     plt.style.use(plt.style.available[0])
     for j in range(1, n):
@@ -80,9 +77,11 @@ def main():
 
         plt.plot(x[:], u[:, j-1])
         plt.grid(True)
+        plt.title("t = " + str(round(t[j-1], 1)))
         plt.draw()
         plt.pause(0.0001)
         plt.clf()
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     main()
