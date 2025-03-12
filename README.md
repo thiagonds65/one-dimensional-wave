@@ -12,22 +12,22 @@ For this example, the following conditions are considered:
 
 ### Boundary Conditions
 <p>
-<img src="https://render.githubusercontent.com/render/math?math=u(0,t) = 0">
+$$u(0,t) = 0$$
 </p>
 <p>
-<img src="https://render.githubusercontent.com/render/math?math=u(L,t) = 0">
+$$u(L,t) = 0$$
 </p>
 
 ### Initial Conditions
 
 <p>
-<img src="https://render.githubusercontent.com/render/math?math=u(x,0) = sin(x), 0\le x \le \pi">
+$$u(x,0) = sin(x), 0\le x \le \pi$$
 </p>
 <p>
-<img src="https://render.githubusercontent.com/render/math?math=u(x,0) = 0, x > \pi">
+$$u(x,0) = 0, x > \pi$$
 </p>
 <p>
-<img src="https://render.githubusercontent.com/render/math?math=\left.\frac{\partial u}{\partial t}\right|_{t = 0} = 0">
+$$\left.\frac{\partial u}{\partial t}\right|_{t = 0} = 0$$
 </p>
 
 Changing boundary and initial conditions, allows to obtain waves with different shapes.
